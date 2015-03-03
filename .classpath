@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JDK1.7">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.generic_6.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="com.genuitec.runtime.library/com.genuitec.jstl_1.2.1">
+		<attributes>
+			<attribute name="org.eclipse.jst.component.dependency" value="WEB-INF/lib"/>
+			<attribute name="owner.project.facets" value="jst.web.jstl"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="libs/asm-3.3.1.jar"/>
+	<classpathentry kind="lib" path="libs/aspectjweaver-1.6.11.jar"/>
+	<classpathentry kind="lib" path="libs/cglib-2.2.2.jar"/>
+	<classpathentry kind="lib" path="libs/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="libs/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="libs/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="libs/commons-digester3-3.2.jar"/>
+	<classpathentry kind="lib" path="libs/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="libs/commons-io-2.1.jar"/>
+	<classpathentry kind="lib" path="libs/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="libs/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="libs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/commons-pool-1.5.4.jar"/>
+	<classpathentry kind="lib" path="libs/cxf-2.5.2.jar"/>
+	<classpathentry kind="lib" path="libs/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="libs/httpclient-4.1.2.jar"/>
+	<classpathentry kind="lib" path="libs/junit-4.8.jar"/>
+	<classpathentry kind="lib" path="libs/mybatis-3.2.2.jar"/>
+	<classpathentry kind="lib" path="libs/mybatis-spring-1.2.0.jar"/>
+	<classpathentry kind="lib" path="libs/mysql-connector-java-5.1.27.jar"/>
+	<classpathentry kind="lib" path="libs/spring-aop-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-asm-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-beans-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-context-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-context-support-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-core-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-expression-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-jdbc-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-orm-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-test-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-tx-3.0.7.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-web-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/spring-webmvc-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="libs/wsdl4j-1.6.2.jar"/>
+	<classpathentry kind="lib" path="libs/xmlschema-core-2.0.1.jar"/>
+	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
+</classpath>

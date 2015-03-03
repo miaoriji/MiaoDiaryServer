@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	  default-autowire="byName">
+	  
+	  <!-- 动态代理  强制使用cglib -->
+	  <aop:aspectj-autoproxy proxy-target-class="true"/>
+	  
+	  
+	   <!-- 扫描文件 -->
+	   <context:component-scan base-package="com.softfz.dao"></context:component-scan>
+	   <context:component-scan base-package="com.softfz.service"></context:component-scan>
+	   
+	  
+	  
+	   <!-- 加载配置文件 -->
+	   <bean id="configBean" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	   		<property name="locations" value="classpath:resource/conf/db.properties"></property>
+	   </bean>
+	   
+	   <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	   		<property name="dataSource" ref="dataSource"></property>
+	   </bean>
+	   <!-- 数据库配置 -->
+	   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	   		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
+	   		<property name="url" value="${jdbc.url}"></property>
+	   		<property name="username" value="${jdbc.username}"></property>
+	   		<property name="password" value="${jdbc.password}"></property>
+	   </bean>
+	  
+	   
+	   <!-- 配置AOP 定义标签有序-->
+	   <bean id="logAspect" class="com.softfz.core.aop.LogAspect"></bean>
+	  <aop:config proxy-target-class="true">
+	   		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.softfz.service..*.*(..))"/>
+	   		
+	   		<aop:aspect ref="logAspect">
+	   			<aop:pointcut id="logPointcut" expression="execution(* com.softfz.core.web.controller..*.*(..))"  />
+	   			<aop:before pointcut-ref="logPointcut" method="writeLog" />
+	   		</aop:aspect>
+	   </aop:config> 
+	   
+	    <!-- 配置事务管理 -->
+	   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	   		<property name="dataSource" ref="dataSource"></property>
+	   </bean>
+	   
+	   
+	   <!-- 事务通知定义 -->
+	   <tx:advice id="txAdvice" transaction-manager="transactionManager">
+	   		<tx:attributes>
+	   			<!--propagation:事务传播行为即当一个方法调用另外一个方法时事务的处理方式  
+	   				isolation:事务隔离级别  为了解决并发问题   -->
+	   			<tx:method name="save*" propagation="REQUIRED"/>
+	   			<tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+	   			<tx:method name="*" isolation="DEFAULT" />
+	   		</tx:attributes>
+	   </tx:advice>
+	   
+	   <!-- mybatis 与之整合  -->
+	   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	   		<property name="dataSource" ref="dataSource"></property>
+	   		<property name="configLocation" value="classpath:resource/conf/configuration.xml"></property><!-- 指定mybatis的配置文件位置 -->
+	   		<property name="mapperLocations" ><!-- 指定Mapper的配置文件位置 -->
+	   			<list>
+	   				<value>classpath:resource/mapper/*.map.xml</value>
+	   			</list>
+	   		</property>
+	   </bean>
+	   
+	   <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	   		<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+	   </bean>
+	   
+</beans>
